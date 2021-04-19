@@ -4,32 +4,58 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <title>Javacript Code Quiz</title>
+    <title>Front-End Web Development Code Quiz</title>
   </head>
   <body>
     <header>
       <a href="#">
-        <img src="" alt="Logo" />
+        <i class="fas fa-laptop-code"></i>
       </a>
-      <h1>Welcome to Javascript Code Quiz</h1>
+      <h1>Welcome to<br />The Front-End Web Development <br />Coding Quiz!!!</h1>
       <p class="description">
-        The following quiz is comprised of 10 questions out of 100 points about
-        coding. You will have 30 seconds to answer each question. If you run out
-        of time, or get the question wrong, your score will be deducted by 10
+        The following quiz is comprised of 10 questions out of 100 points. You have 30 seconds to answer each question. If you run out of
+        time, or get the question wrong, your score will be deducted by 10
         points. At the end of the quiz, scores are tallied and high scores can
         be accessed by clicking on the "high scores" button below.
-        <br />Press the "Start" below to start the quiz. <br />Good luck!
       </p>
     </header>
     <main>
-      <section id="quizSection">
-        <div id="quiz"></div>
-      </section>
-      <section id="buttons">
-        <a href="#start.html" id="startQuiz" class="btn">Start</a>
-        <a href="#highscores.html" id="highScores" class="btn">High Scores</a>
-      </section>
+        <section id="quizSection">
+          <div id="quizHeaders">
+            <h1><span id="score">10</span> Points</h1>
+            <h1>Question... <span id="question">1</span> of 10</h1>
+          </div>
+          <div id="quizQuestion">
+            <h3>What does HTML stand for?</h3>
+          </div>
+          <div id="inputs">
+            <input type="radio" id="1">Hyper-Text-Markup-Language</input>
+            <br>
+            <input type="radio" id="2">Hyper-Text-Markup-Language</input>
+            <br>
+            <input type="radio" id="3">Hyper-Text-Markup-Language</input>
+            <br>
+            <input type="radio" id="4">Hyper-Text-Markup-Language</input>
+          </div>
+          <div id="timer">
+              <h3>Time Left</h3>
+              <h3 id="timerValue">30</h3>
+          </div>
+        </section>
+        <section id="buttons">
+          <a href="#start.html" id="startQuiz" class="btn">START</a>
+          <a href="#highscores.html" id="highScores" class="btn">HIGH SCORES</a>
+        </section>
+        <section>
+          <br />Press the "Start" above to start the quiz. <br />Good luck!
+        </section>
     </main>
     <script src="./assets/js/script.js"></script>
   </body>
