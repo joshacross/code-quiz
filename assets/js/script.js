@@ -3,7 +3,7 @@
 // inputs = choices
 
 // Declarations
-var startQuiz = document.getElementById('startQuiz');
+// var startQuiz = document.getElementById('startQuiz');
 var quizSection = document.getElementById('quizSection');
 var scoreBoard = document.getElementById('scoreBoard');
 var currentScore = document.getElementById('currentScore');
@@ -34,99 +34,175 @@ hideElements();
 var time = 30;
 var timerValue = document.getElementById('timerValue');
 
-var currentQuestionIndex = 0;
+var questions = [
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    },
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    },
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    },
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    },
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    },
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    },
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    },
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    },
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    },
+    {
+        question: "What is Your Name",
+        choice1: jerry,
+        choice2: Berry,
+        choice3: Terry,
+        choice4: Sam,
+        answer: 1
+    }
+]
 
-startQuiz = function (event) {
-    console.log(event)
-    // quizSection.style.display = "block"
-};
+var startQuiz = function() {
+    var currentQuestionIndex = 0;
+    youHighScore = 0;
+    
+    // Initialize countdown timer
+    timerId = setInterval(clock, 1000);
+    timeEl.textContent = time;
 
-// Start quiz - pressing "start" button results in opening message changing to first question and timer initializes.
-// Initialize quiz when start button is clicked
+    showQuestion();
+    //Populate first question
 
-    // Hide start screen elements and unhide question contatiner
-//     startQuiz.classList.add("hide");
-//     startTextEl.classList.add("hide");
-//     questionContainerEl.classList.remove("hide");
-//     // Initialize countdown timer
-//     timerId = setInterval(clock, 1000);
-//     timeEl.textContent = time;
-//     //Populate first question
-//     showQuestion();
-// }
+    // Function to populate questions from our question array.
+    function showQuestion() {
+        // Find question from array of questions
+        var currentQuestion = questions[currentQuestionIndex];
+        // Fill in question and answer choices
+        var titleEl = document.getElementById("question-slot");
+        titleEl.textContent = currentQuestion.question;
+        choicesEl.innerHTML = "";
+        // Run through questions
+        currentQuestion.choices.forEach(function(choice, i) {
+            var choiceNode = document.createElement("button");
+            choiceNode.setAttribute("class", "choice-btn");
+            choiceNode.setAttribute("value", choice);
+            choiceNode.textContent = i + 1 + ". " + choice;
+            // Make new choice buttons click listenter
+            choiceNode.onclick = clickChoiceButton;
+            // Append choice so it displays on page
+            choicesEl.appendChild(choiceNode);
+        });
+    }
 
-// function clock() {
-//     // Countdown clock
-//     time--;
-//     timeEl.textContent = time;
-//     // If user runs out of time before finishing quix, end quiz
-//     if (time <= 0) {
-//         quizEnd();
-//     }
-// }
+        function clock() {
+        // Countdown clock
+        time--;
+        timeEl.textContent = time;
+        // If user runs out of time before finishing quix, end quiz
+        if (time <= 0) {
+            quizEnd();
+        }
+    }
 
-// // Function to populate questions from our question array.
-// function showQuestion() {
-//     // Find question from array of questions
-//     var currentQuestion = questions[currentQuestionIndex];
-//     // Fill in question and answer choices
-//     var titleEl = document.getElementById("question-slot");
-//     titleEl.textContent = currentQuestion.question;
-//     choicesEl.innerHTML = "";
-//     // Run through questions
-//     currentQuestion.choices.forEach(function(choice, i) {
-//         var choiceNode = document.createElement("button");
-//         choiceNode.setAttribute("class", "choice-btn");
-//         choiceNode.setAttribute("value", choice);
-//         choiceNode.textContent = i + 1 + ". " + choice;
-//         // Make new choice buttons click listenter
-//         choiceNode.onclick = clickChoiceButton;
-//         // Append choice so it displays on page
-//         choicesEl.appendChild(choiceNode);
-//     });
-// }
+// Function to react to question choice being clicked. Depending on quiz status could move to next question or end quiz. Will also deduct time from timer if question is answered incorrectly.
+    function clickChoiceButton() {
+        // check to see if user answered question right or wrong
+        if (this.value !== questions[currentQuestionIndex].answer) {
+            time -= 10;
 
-// // Function to react to question choice being clicked. Depending on quiz status could move to next question or end quiz. Will also deduct time from timer if question is answered incorrectly.
-// function clickChoiceButton() {
-//     // check to see if user answered question right or wrong
-//     if (this.value !== questions[currentQuestionIndex].answer) {
-//         time -= 10;
+            if(time < 0) {
+                time = 0;
+            }
+            timeEl.textContent = time;
 
-//         if(time < 0) {
-//             time = 0;
-//         }
-//         timeEl.textContent = time;
+            // Notify quiz taker if they answered right or wrong
+            rightWrongEl.textContent = "Wrong"
+            } else {
+            rightWrongEl.textContent = "Correct! Good job!";
+            }
+            rightWrongEl.setAttribute("class", "right-wrong");
 
-//         // Notify quiz taker if they answered right or wrong
-//         rightWrongEl.textContent = "Wrong"
-//         } else {
-//         rightWrongEl.textContent = "Correct! Good job!";
-//         }
-//         rightWrongEl.setAttribute("class", "right-wrong");
+            setTimeout(function() {
+                rightWrongEl.setAttribute("class", "right-wrong hide");
+            }, 500);
 
-//         setTimeout(function() {
-//             rightWrongEl.setAttribute("class", "right-wrong hide");
-//         }, 500);
+            currentQuestionIndex++;
 
-//         currentQuestionIndex++;
+            if (currentQuestionIndex === questions.length) {
+                quizEnd();
+            } else {
+                showQuestion ();
+            }
+    }
 
-//         if (currentQuestionIndex === questions.length) {
-//             quizEnd();
-//         } else {
-//             showQuestion ();
-//         }
-// }
+    // Function for when the quiz is finished
+    function quizEnd() {
+        // Stop timer
+        clearInterval(timerId);
+        // hide question container
+        questionContainerEl.setAttribute("class", "hide");
+        // show end quiz container
+        endQuizContainerEl.setAttribute("class", "show");
+        // users score equals time remaining
+        scoreEl.textContent = time;
+    }
+}
 
-// // Function for when the quiz is finished
-// function quizEnd() {
-//     // Stop timer
-//     clearInterval(timerId);
-//     // hide question container
-//     questionContainerEl.setAttribute("class", "hide");
-//     // show end quiz container
-//     endQuizContainerEl.setAttribute("class", "show");
-//     // users score equals time remaining
-//     scoreEl.textContent = time;
-// }
+
 
 document.getElementById('startQuiz').addEventListener('click', startQuiz());
