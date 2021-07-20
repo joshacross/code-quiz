@@ -4,6 +4,10 @@
     --tertiary-color: #00ffc9;
 }
 
+.hide {
+    visibility: hidden;
+}
+
 body {
     margin: 0 5%;
     text-align: center;

@@ -29,13 +29,26 @@
     <main>
         <section id="quizSection">
           <div id="quizHeaders">
-            <h1><span id="score">10</span> Points</h1>
             <h1>Question... <span id="question">1</span> of 10</h1>
+            <h1 id="scoreBoard"><span id="currentScore">0</span> Points</h1>
           </div>
           <div id="quizQuestion">
             <h3>What does HTML stand for?</h3>
           </div>
-          <div id="inputs">
+          <div id="hideItems">
+          <div id="successMessage">
+            <h1>Congratulations! You've completed your quiz</h1>
+          </div>
+          <div id="displayHighScores">
+            <h2>High Scores</h2>
+            <p>Name: <span id="highScoreName"></span> Score: <span id="highScorePoints"></span></p>
+            <h4>Your Score: <span id="yourHighScore"></span></h4>
+            <p>Enter your name below to record your score</p>
+            <input id="nameInput" type="text" placeholder="John Smith" name="nameInput" />
+            <a href="#" id="nameSubmit" class="btn">Submit</a>
+          </div>
+        </div>
+          <div id="choices">
             <input type="radio" id="1">Hyper-Text-Markup-Language</input>
             <br>
             <input type="radio" id="2">Hyper-Text-Markup-Language</input>
@@ -50,13 +63,14 @@
           </div>
         </section>
         <section id="buttons">
-          <a href="#start.html" id="startQuiz" class="btn">START</a>
-          <a href="#highscores.html" id="highScores" class="btn">HIGH SCORES</a>
+          <button id="startQuiz" class="btn">START</button>
+          <a href="#viewHighScores" id="viewHighScores" class="btn">HIGH SCORES</a>
         </section>
         <section>
           <br />Press the "Start" above to start the quiz. <br />Good luck!
         </section>
     </main>
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/questions.js"></script>
   </body>
 </html>
