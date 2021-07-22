@@ -9,6 +9,7 @@ var scoreBoard = document.getElementById('scoreBoard');
 var currentScore = document.getElementById('currentScore');
 var quizQuestion = document.getElementById('quizQuestion');
 var choices = document.getElementById('choices');
+var solution = document.getElementById('solution');
 var viewHighScores = document.getElementById('viewHighScores');
 var successMessage = document.getElementById('successMessage');
 var displayHighScores = document.getElementById('displayHighScores');
@@ -39,9 +40,11 @@ var questions = [
         question: "What does HTML stand for?",
         choices: [
             "Hyper-Text Markup Language",
-            "H"
+            "Hex-Tex-Mex-Lex",
+            "Hilbert Taylor's Micro Language",
+            "Hyper-Text Market Language"
         ],
-        answer: "1"
+        answer: "Hyper-Text Markup Language"
     },
     {
         question: "Which of the following is not an HTML tag?",
@@ -51,7 +54,7 @@ var questions = [
             "Table",
             "Style"
         ],
-        answer: "4"
+        answer: "Style"
     },
     {
         question: "What symbol indicates a tag?",
@@ -61,7 +64,7 @@ var questions = [
             "Comma (,)",
             "Exclamation Mark:  (!)"
         ],
-        answer: "1"
+        answer: "Angled brackets (<>)"
     },
     {
         question: "Which of these is a genuine tag keyword",
@@ -71,7 +74,7 @@ var questions = [
             "Body",
             "Image"
         ],
-        answer: "3"
+        answer: "Body"
     },
     {
         question: "(T/F) A CSS file can be applied to only one HTML file",
@@ -79,7 +82,7 @@ var questions = [
             "True",
             "False"
         ],
-        answer: "2"
+        answer: "False"
     },
     {
         question: "What is the corect tag for a line break in HTML",
@@ -89,7 +92,7 @@ var questions = [
             "<bk />",
             "<br />"
         ],
-        answer: "4"
+        answer: "<br />"
     },
     {
         question: "What does CSS stand for?",
@@ -99,7 +102,7 @@ var questions = [
             "Cascading Style Sheet",
             "Creative Styling Sheet"
         ],
-        answer: "3"
+        answer: "Cascading Style Sheet"
     },
     {
         question: "Where should a CSS file be referenced in a HTML file?",
@@ -109,7 +112,7 @@ var questions = [
             "Inside the head section",
             "Inside the body section"
         ],
-        answer: "3"
+        answer: "Inside the head section"
     },
     {
         question: "What is the correct format for aligning written content to the center of the page in CSS?",
@@ -119,7 +122,7 @@ var questions = [
             "Text: align-center",
             "Font: align-center"
         ],
-        answer: "1"
+        answer: "Text-align: center"
     },
     {
         question: "What is the correct format for a Div?",
@@ -129,7 +132,7 @@ var questions = [
             "<Div />",
             "<Div></Div>"
         ],
-        answer: "4"
+        answer: "<Div></Div>"
     },
 ]
 
@@ -142,8 +145,8 @@ var startQuiz = function() {
 
     
     // // Initialize countdown timer
-    // timerId = setInterval(clock, 1000);
-    // timeEl.textContent = time;
+    timerValue = setInterval(clock, 1000);
+    timeEl.textContent = time;
 
     showQuestion();
     //Populate first question
@@ -151,13 +154,12 @@ var startQuiz = function() {
     // Function to populate questions from our question array.
     function showQuestion() {
 
-        choicesEl = questions.choices
         // Find question from array of questions
         var currentQuestion = questions[currentQuestionIndex];
         // Fill in question and answer choices
         var titleEl = quizQuestion;
         titleEl.textContent = currentQuestion.question;
-        choicesEl.innerHTML = RadioNodeList
+        choices.innerHTML = "";
         // Run through questions
         currentQuestion.choices.forEach(function(choice, i) {
             var choiceNode = document.createElement("button");
@@ -167,14 +169,14 @@ var startQuiz = function() {
             // Make new choice buttons click listenter
             choiceNode.onclick = clickChoiceButton;
             // Append choice so it displays on page
-            choicesEl.appendChild(choiceNode);
+            choices.appendChild(choiceNode);
         });
     }
 
         function clock() {
         // Countdown clock
         time--;
-        timeEl.textContent = time;
+        timerValue.textContent = time;
         // If user runs out of time before finishing quix, end quiz
         if (time <= 0) {
             quizEnd();
@@ -190,17 +192,17 @@ var startQuiz = function() {
             if(time < 0) {
                 time = 0;
             }
-            timeEl.textContent = time;
+            timerValue.textContent = time;
 
             // Notify quiz taker if they answered right or wrong
-            rightWrongEl.textContent = "Wrong"
+            solution.textContent = "Woops! That is incorrect :("
             } else {
-            rightWrongEl.textContent = "Correct! Good job!";
+            solution.textContent = "Correct! Great job!";
             }
-            rightWrongEl.setAttribute("class", "right-wrong");
+            solution.setAttribute("class", "solution");
 
             setTimeout(function() {
-                rightWrongEl.setAttribute("class", "right-wrong hide");
+                solution.setAttribute("class", "solution hide");
             }, 500);
 
             currentQuestionIndex++;
@@ -215,7 +217,7 @@ var startQuiz = function() {
     // Function for when the quiz is finished
     function quizEnd() {
         // Stop timer
-        clearInterval(timerId);
+        clearInterval(timerValue);
         // hide question container
         questionContainerEl.setAttribute("class", "hide");
         // show end quiz container
