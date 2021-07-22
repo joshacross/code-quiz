@@ -1,72 +1,98 @@
 var questions = [
     {
-        question: "",
+        question: "What does HTML stand for?",
         choices: [
-            "",
+            "Hyper-Text Markup Language",
+            "H"
         ],
-        answer: ""
+        answer: "1"
     },
     {
-        question: "",
+        question: "Which of the following is not an HTML tag?",
         choices: [
-            "",
+            "Doctype",
+            "Paragraph",
+            "Table",
+            "Style"
         ],
-        answer: ""
+        answer: "4"
     },
     {
-        question: "",
+        question: "What symbol indicates a tag?",
         choices: [
-            "",
+            "Angled brackets (<>)",
+            "Cureved brackets ({})",
+            "Comma (,)",
+            "Exclamation Mark:  (!)"
         ],
-        answer: ""
+        answer: "1"
     },
     {
-        question: "",
+        question: "Which of these is a genuine tag keyword",
         choices: [
-            "",
+            "Header",
+            "Bold",
+            "Body",
+            "Image"
         ],
-        answer: ""
+        answer: "3"
     },
     {
-        question: "",
+        question: "(T/F) A CSS file can be applied to only one HTML file",
         choices: [
-            "",
+            "True",
+            "False"
         ],
-        answer: ""
+        answer: "2"
     },
     {
-        question: "",
+        question: "What is the corect tag for a line break in HTML",
         choices: [
-            "",
+            "<brk />",
+            "<line />",
+            "<bk />",
+            "<br />"
         ],
-        answer: ""
+        answer: "4"
     },
     {
-        question: "",
+        question: "What does CSS stand for?",
         choices: [
-            "",
+            "Computing Style Sheet",
+            "Creative Style System",
+            "Cascading Style Sheet",
+            "Creative Styling Sheet"
         ],
-        answer: ""
+        answer: "3"
     },
     {
-        question: "",
+        question: "Where should a CSS file be referenced in a HTML file?",
         choices: [
-            "",
+            "Before any HTML code",
+            "After all HTML code",
+            "Inside the head section",
+            "Inside the body section"
         ],
-        answer: ""
+        answer: "3"
     },
     {
-        question: "",
+        question: "What is the correct format for aligning written content to the center of the page in CSS?",
         choices: [
-            "",
+            "Text-align: center",
+            "Font-align: center",
+            "Text: align-center",
+            "Font: align-center"
         ],
-        answer: ""
+        answer: "1"
     },
     {
-        question: "",
+        question: "What is the correct format for a Div?",
         choices: [
-            "",
+            "Div",
+            "<Div>",
+            "<Div />",
+            "<Div></Div>"
         ],
-        answer: ""
+        answer: "4"
     },
 ]

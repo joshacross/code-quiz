@@ -17,7 +17,7 @@ var highScorePoints = document.getElementById('highScorePoints');
 var yourHighScore = document.getElementById('yourHighScore');
 var nameInput = document.getElementById('nameInput');
 var hideItems = document.getElementById('hideItems');
-var quizSection = document.getElementById('quizSection').style.display ="none";
+// var quizSection = document.getElementById('quizSection').style.display ="none";
 
 
 hideElements = function() {
@@ -36,106 +36,128 @@ var timerValue = document.getElementById('timerValue');
 
 var questions = [
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
+        question: "What does HTML stand for?",
+        choices: [
+            "Hyper-Text Markup Language",
+            "H"
+        ],
+        answer: "1"
     },
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
+        question: "Which of the following is not an HTML tag?",
+        choices: [
+            "Doctype",
+            "Paragraph",
+            "Table",
+            "Style"
+        ],
+        answer: "4"
     },
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
+        question: "What symbol indicates a tag?",
+        choices: [
+            "Angled brackets (<>)",
+            "Cureved brackets ({})",
+            "Comma (,)",
+            "Exclamation Mark:  (!)"
+        ],
+        answer: "1"
     },
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
+        question: "Which of these is a genuine tag keyword",
+        choices: [
+            "Header",
+            "Bold",
+            "Body",
+            "Image"
+        ],
+        answer: "3"
     },
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
+        question: "(T/F) A CSS file can be applied to only one HTML file",
+        choices: [
+            "True",
+            "False"
+        ],
+        answer: "2"
     },
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
+        question: "What is the corect tag for a line break in HTML",
+        choices: [
+            "<brk />",
+            "<line />",
+            "<bk />",
+            "<br />"
+        ],
+        answer: "4"
     },
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
+        question: "What does CSS stand for?",
+        choices: [
+            "Computing Style Sheet",
+            "Creative Style System",
+            "Cascading Style Sheet",
+            "Creative Styling Sheet"
+        ],
+        answer: "3"
     },
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
+        question: "Where should a CSS file be referenced in a HTML file?",
+        choices: [
+            "Before any HTML code",
+            "After all HTML code",
+            "Inside the head section",
+            "Inside the body section"
+        ],
+        answer: "3"
     },
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
+        question: "What is the correct format for aligning written content to the center of the page in CSS?",
+        choices: [
+            "Text-align: center",
+            "Font-align: center",
+            "Text: align-center",
+            "Font: align-center"
+        ],
+        answer: "1"
     },
     {
-        question: "What is Your Name",
-        choice1: jerry,
-        choice2: Berry,
-        choice3: Terry,
-        choice4: Sam,
-        answer: 1
-    }
+        question: "What is the correct format for a Div?",
+        choices: [
+            "Div",
+            "<Div>",
+            "<Div />",
+            "<Div></Div>"
+        ],
+        answer: "4"
+    },
 ]
+
+var currentQuestion = {};
 
 var startQuiz = function() {
     var currentQuestionIndex = 0;
     youHighScore = 0;
+
+
     
-    // Initialize countdown timer
-    timerId = setInterval(clock, 1000);
-    timeEl.textContent = time;
+    // // Initialize countdown timer
+    // timerId = setInterval(clock, 1000);
+    // timeEl.textContent = time;
 
     showQuestion();
     //Populate first question
 
     // Function to populate questions from our question array.
     function showQuestion() {
+
+        choicesEl = questions.choices
         // Find question from array of questions
         var currentQuestion = questions[currentQuestionIndex];
         // Fill in question and answer choices
-        var titleEl = document.getElementById("question-slot");
+        var titleEl = quizQuestion;
         titleEl.textContent = currentQuestion.question;
-        choicesEl.innerHTML = "";
+        choicesEl.innerHTML = RadioNodeList
         // Run through questions
         currentQuestion.choices.forEach(function(choice, i) {
             var choiceNode = document.createElement("button");
