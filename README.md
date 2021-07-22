@@ -19,4 +19,4 @@ The following application is a 10 question quiz out of 100 points for beginners 
 https://joshacross.github.io/code-quiz
 
 ## Reference Images
-<img src="assets/gifcode.gif" alt="gif of the Front-End Web Development Coding Quiz application displaying it's functionality>
+<img src="assets/gifcode.gif" alt="gif of the Front-End Web Development Coding Quiz application displaying it's functionality">
