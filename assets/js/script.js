@@ -18,22 +18,24 @@ var highScorePoints = document.getElementById('highScorePoints');
 var yourHighScore = document.getElementById('yourHighScore');
 var nameInput = document.getElementById('nameInput');
 var hideItems = document.getElementById('hideItems');
+var directions = document.getElementById('directions');
+var start = document.getElementsByClassName('start');
 // var quizSection = document.getElementById('quizSection').style.display ="none";
 
-
 hideElements = function() {
-scoreBoard.setAttribute("hidden", true);
+scoreBoard.setAttribute("hidden", false);
+viewHighScores.setAttribute("hidden", true);
 successMessage.setAttribute("hidden", true);
 displayHighScores.setAttribute("hidden", true);
 highScoreName.setAttribute("hidden", true);
-yourHighScore.setAttribute("hidden", true);
 highScorePoints.setAttribute("hidden", true);
 };
 
 hideElements();
 
 var time = 30;
-var timerValue = document.getElementById('timerValue');
+var countdown = document.getElementById('countdown');
+var clock;
 
 var questions = [
     {
@@ -140,13 +142,12 @@ var currentQuestion = {};
 
 var startQuiz = function() {
     var currentQuestionIndex = 0;
-    youHighScore = 0;
-
+    yourHighScore = 0;
 
     
     // // Initialize countdown timer
-    timerValue = setInterval(clock, 1000);
-    timeEl.textContent = time;
+    clock = setInterval(clock, 1000);
+    countdown.textContent = time;
 
     showQuestion();
     //Populate first question
@@ -162,24 +163,28 @@ var startQuiz = function() {
         choices.innerHTML = "";
         // Run through questions
         currentQuestion.choices.forEach(function(choice, i) {
-            var choiceNode = document.createElement("button");
-            choiceNode.setAttribute("class", "choice-btn");
-            choiceNode.setAttribute("value", choice);
-            choiceNode.textContent = i + 1 + ". " + choice;
+            var choiceEl = document.createElement("button");
+            choiceEl.setAttribute("class", "choice-btn");
+            choiceEl.setAttribute("value", choice);
+            choiceEl.textContent = i + 1 + ". " + choice;
             // Make new choice buttons click listenter
-            choiceNode.onclick = clickChoiceButton;
+            choiceEl.onclick = clickChoiceButton;
             // Append choice so it displays on page
-            choices.appendChild(choiceNode);
+            choices.appendChild(choiceEl);
         });
     }
 
-        function clock() {
+        function clock(m,s) {
         // Countdown clock
         time--;
-        timerValue.textContent = time;
+        countdown.textContent = time;
         // If user runs out of time before finishing quix, end quiz
         if (time <= 0) {
-            quizEnd();
+            quizComplete();
+        }
+
+        if(time <= 0) {
+            time = 0;
         }
     }
 
@@ -187,12 +192,9 @@ var startQuiz = function() {
     function clickChoiceButton() {
         // check to see if user answered question right or wrong
         if (this.value !== questions[currentQuestionIndex].answer) {
-            time -= 10;
+            time -= 5;
 
-            if(time < 0) {
-                time = 0;
-            }
-            timerValue.textContent = time;
+            countdown.textContent = time;
 
             // Notify quiz taker if they answered right or wrong
             solution.textContent = "Woops! That is incorrect :("
@@ -208,22 +210,22 @@ var startQuiz = function() {
             currentQuestionIndex++;
 
             if (currentQuestionIndex === questions.length) {
-                quizEnd();
+                quizComplete();
             } else {
                 showQuestion ();
             }
     }
 
     // Function for when the quiz is finished
-    function quizEnd() {
+    function quizComplete() {
         // Stop timer
-        clearInterval(timerValue);
+        clearInterval(countdown);
         // hide question container
-        questionContainerEl.setAttribute("class", "hide");
+        question.setAttribute("class", "hide");
         // show end quiz container
-        endQuizContainerEl.setAttribute("class", "show");
+        scoreBoard.setAttribute("hidden", false);
         // users score equals time remaining
-        scoreEl.textContent = time;
+        yourHighScore.textContent = time;
     }
 }
 

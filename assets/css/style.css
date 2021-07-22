@@ -53,14 +53,27 @@ input {
 }
 
 #buttons {
+    display: flex;
+    justify-content: space-between;
     margin: 10%;
 }
 
 .btn {
+    font-size: 100%;
+    display: flex;
     background-color: var(--tertiary-color);
     color: var(--secondary-color);
     border-radius: 15px;
-    padding: 3% 5%;
-    margin: 20% 10%;
+    padding: 5% 20%;
+    margin: 1% 5%;
+    text-decoration: none;
+}
+
+.choice-btn {
+    background-color: var(--tertiary-color);
+    color: var(--secondary-color);
+    border-radius: 15px;
+    padding: 2% 3%;
+    margin: 2% 2%;
     text-decoration: none;
 }
